@@ -130,18 +130,92 @@ body {
 p {
   color:black;
 }
+.pembuka h2{
+  color:white;
+  text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+
+}
 </style>
+<meta charset="UTF-8">
+          <meta http-equiv="X-UA-Compatible" content="IE=edge">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
 
 <div class="pembuka">
-    <p>Website AHE Kasai</p>
+      <body>
+        <br><br>
+        <h2>AHE KASAI</h2><br>
+          <h2 class="typewrite text-white" data-period="1000" data-type='[ "Halo,","Selamat Datang","Website AHE Kasai" ]'>
+              <span class="wrap">Halo, Orang Tua dan Siswa Hebat!</span>
+          </h2>
+          <script>
+              var TxtType = function(el, toRotate, period) {
+              this.toRotate = toRotate;
+              this.el = el;
+              this.loopNum = 0;
+              this.period = parseInt(period, 10) || 2000;
+              this.txt = '';
+              this.tick();
+              this.isDeleting = false;
+              };
+              
+              TxtType.prototype.tick = function() {
+              var i = this.loopNum % this.toRotate.length;
+              var fullTxt = this.toRotate[i];
+              
+              if (this.isDeleting) {
+              this.txt = fullTxt.substring(0, this.txt.length - 1);
+              } else {
+              this.txt = fullTxt.substring(0, this.txt.length + 1);
+              }
+              
+              this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+              
+              var that = this;
+              var delta = 200 - Math.random() * 100;
+              
+              if (this.isDeleting) { delta /= 2; }
+              
+              if (!this.isDeleting && this.txt === fullTxt) {
+              delta = this.period;
+              this.isDeleting = true;
+              } else if (this.isDeleting && this.txt === '') {
+              this.isDeleting = false;
+              this.loopNum++;
+              delta = 500;
+              }
+              
+              setTimeout(function() {
+              that.tick();
+              }, delta);
+              };
+              
+              window.onload = function() {
+              var elements = document.getElementsByClassName('typewrite');
+              for (var i=0; i<elements.length; i++) {
+              var toRotate = elements[i].getAttribute('data-type');
+              var period = elements[i].getAttribute('data-period');
+              if (toRotate) {
+              new TxtType(elements[i], JSON.parse(toRotate), period);
+              }
+              }
+              // INJECT CSS
+              var css = document.createElement("style");
+              css.type = "text/css";
+              css.innerHTML = ".typewrite > .wrap { border-right: 0.08em solid #fff}";
+              document.body.appendChild(css);
+              };
+          </script>
+      </body>
+  </html>
   <br><br><br><br><br><br>
 </div>
 <div class="navbar">
-  <a href="">Pengumuman</a>
+  <a href="#">Utama</a>
+  <a href="#">Pengumuman</a>
   <a href="#">Informasi Pendaftaran</a>
-  <a href="#">Moment</a>
+  <a href="wisuda/index.html">Wisuda Siswa AHE</a>
   <a href="#" class="right">Link</a>
 </div>
 <div class="row">
